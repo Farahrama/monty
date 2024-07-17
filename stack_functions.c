@@ -23,7 +23,7 @@ new_node->next = *stack;
 *stack = new_node;
 if (*stack != NULL)
 {
-*(stack)->prev = new_node;
+(*stack)->prev = new_node;
 }
 *stack = new_node;
 }
@@ -38,7 +38,9 @@ if (*stack != NULL)
 */
 void pall(stack_t **stack, unsigned int line_number)
 {
-stack-t *current = *stack;
+stack_t *current;
+(void)line_number;
+current = *stack;
 while (current != NULL)
 {
 printf("%d\n", current->n);
