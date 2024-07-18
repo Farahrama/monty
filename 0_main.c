@@ -1,15 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "monty.h"
 
-int main(void)
+int main(int argc, char *argv[])
 {
-    stack_t *stack = NULL;
+    char *filename;
+    FILE *file;
 
-    push(&stack, 1);
-    push(&stack, 2);
-    push(&stack, 3);
+    if (argc != 2) {
+        fprintf(stderr, "USAGE: monty file\n");
+        return EXIT_FAILURE;
+    }
 
-    pall(&stack, 0);
+    filename = argv[1];
+    file = fopen(filename, "r");
+    if (file == NULL) {
+        fprintf(stderr, "Error: Can't open file %s\n", filename);
+        return EXIT_FAILURE;
+    }
 
+    execute_monty(file);
+    fclose(file);
     return 0;
 }
 
